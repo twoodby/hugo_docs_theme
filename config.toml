@@ -4,6 +4,8 @@ title = "MyDocs"
 theme = "mydocs"
 
 
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
 
 [params]
   # Javascript and CSS cache are automatically busted when new version of site is generated.
