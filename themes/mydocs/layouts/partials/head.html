@@ -1,0 +1,16 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ hugo.Generator }}
+
+    {{ $assetBusting := not .Site.Params.disableAssetsBusting }}
+    <link href="{{ "css/bootstrap-5.0.1-min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
+    <link href="{{ "css/fontawesome-free-all-5.15.3.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
+    <link href="{{ "css/mydocs.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="/faveico-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/faveico-32x32.png" sizes="32x32">       
+    <link rel="icon" type="image/png" href="/faveico-96x96.png" sizes="96x96">
+
+    <title>{{ .Title }} {{ default "::" .Site.Params.titleSeparator }} {{ .Site.Title }}</title>
+</head>

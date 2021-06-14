@@ -1,0 +1,39 @@
+<div class="h-100 overflow-auto bg-dark text-white pl-0 pt-3" id="sidebar" role="navigation" style="width: 250px;">
+
+    <a class="navbar-brand text-white" href="#">
+        <img src="/faveico-32x32.png" alt="" width="32" height="32" class="d-inline-block">
+        {{ .Name }}
+    </a>
+    <hr/>
+
+    {{ if .Site.Params.showSearchBox }}
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+        <input type="text" class="form-control" placeholder="Search..." aria-label="Username" aria-describedby="basic-addon1">
+        <button class="btn btn-secondary" type="button" id="button-addon2"><i class="fas fa-times-circle"></i></button>
+      </div>
+
+        <hr/>
+    {{ end }}
+    
+
+    <ul class="nav flex-column sticky-top pl-0">
+        <li class="nav-item"><a class="nav-link" href="#">Overview</a></li>
+        <li class="nav-item">
+            <a class="nav-link">Reports▾</a>
+            <ul class="list-unstyled flex-column ps-3" >
+               <li class="nav-item"><a class="nav-link" href="">Report 1</a></li>
+               <li class="nav-item"><a class="nav-link" href="">Report 2</a></li>
+            </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#">Analytics</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Export</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Snippets</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Flexbox</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Layouts</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Templates</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Themes</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Last Item</a></li>
+    </ul>
+</div>
