@@ -1,7 +1,7 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
+title: "Setup"
 description:
-date: {{ .Date }}
+date: 2021-06-14T15:30:53-04:00
 draft: false
 tags:
 categories:

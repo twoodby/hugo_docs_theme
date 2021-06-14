@@ -2,7 +2,7 @@
 
     <a class="navbar-brand text-white" href="/">
         <img src="/faveico-32x32.png" alt="" width="32" height="32" class="d-inline-block">
-        {{ .Name }}
+        {{ .Site.Title }}
     </a>
     <hr/>
 
@@ -17,6 +17,31 @@
     {{ end }}
     
     <!-- Main Menu -->
+    <div>
+
+    {{ $curUniqueID := .File.UniqueID }}    
+    {{range .Site.Home.Sections.ByWeight}}
+
+        <a 
+            href="{{ .Permalink }}" 
+            class="text-decoration-none active {{ if eq .File.UniqueID $curUniqueID }}link-info{{ else }}link-light{{ end }}">
+            {{ safeHTML .Params.Pre }} {{ .Title }}
+
+        </a>
+        <br/>
+    {{end}}
+    </div>
+
+
+
+
+    <hr/>
+
+
+
+
+
+
     <div class="ps-3">
         <a href="#" class="link-light text-decoration-none"><i class="far fa-angry"></i> Primary link</a>
     </div>
