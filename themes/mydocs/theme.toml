@@ -1,21 +1,21 @@
 # theme.toml template for a Hugo theme
 # See https://github.com/gohugoio/hugoThemes#themetoml for an example
 
-name = "Mydocs"
+name = "MyDocs"
 license = "MIT"
-licenselink = "https://github.com/yourname/yourtheme/blob/master/LICENSE"
+licenselink = "https://github.com/twoodby/hugo_docs_theme/blob/main/themes/mydocs/LICENSE"
 description = ""
-homepage = "http://example.com/"
-tags = []
-features = []
+homepage = "https://github.com/twoodby/hugo_docs_theme/"
+tags = ["documentation", "learn", "doc", "search", "graphs"]
+features = ["documentation", "menu", "nested sections", "search", "mermaid"]
 min_version = "0.41.0"
 
 [author]
-  name = ""
-  homepage = ""
+  name = "Timothy Woodby"
+  homepage = "https://github.com/twoodby"
 
 # If porting an existing theme
 [original]
-  name = ""
-  homepage = ""
-  repo = ""
+  name = "Learn"
+  homepage = "https://github.com/matcornic/hugo-theme-learn/"
+  repo = "https://github.com/matcornic/hugo-theme-learn"

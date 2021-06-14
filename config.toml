@@ -1,3 +1,11 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "My New Hugo Site"
+theme = "mydocs"
+
+
+
+[params]
+  # Javascript and CSS cache are automatically busted when new version of site is generated.
+  # Set this to true to disable this behavior (some proxies don't handle well this optimization)
+  disableAssetsBusting = false
