@@ -7,7 +7,9 @@
             "title": "{{ htmlEscape $page.Title}}",
             "tags": [{{ range $tindex, $tag := $page.Params.tags }}{{ if $tindex }}, {{ end }}"{{ $tag| htmlEscape }}"{{ end }}],
             "description": "{{ htmlEscape .Description}}",
-            "content": {{$page.Plain | jsonify}}
+            "content": {{$page.Plain | jsonify}},
+            "last_mod": "{{ $page.Lastmod.Format "January 2, 2006" }}",
+            "kind" : "{{ $page.Kind}}"
         }    
         {{- end -}}
     {{- end -}}
