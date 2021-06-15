@@ -1,11 +1,14 @@
 
-{{ template "breadcrumb" dict "page" . "value" .Title }}
+
+{{ $value := (printf "<span class='navbar-text'>%s</span>" .Title) }}
+{{ template "breadcrumb" dict "page" . "value" $value }}
+
 
 
 {{define "breadcrumb"}}
 {{$parent := .page.Parent }}
 {{ if $parent }}
-  {{ $value := (printf "<li class='nav-item'><a class='nav-link' href='%s'>%s</a></li>%s" $parent.RelPermalink $parent.Title .value) }}
+  {{ $value := (printf "<li class='nav-item'><a class='nav-link' href='%s'>%s<i class='fas fa-angle-right ps-3'></i></a></li>%s" $parent.RelPermalink $parent.Title .value) }}
   {{ template "breadcrumb" dict "page" $parent "value" $value }}
 {{else}}
 
