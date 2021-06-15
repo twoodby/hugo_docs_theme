@@ -7,11 +7,11 @@
             <main class="col main h-100 overflow-auto">
 
                 SINGLE
-
-                {{ partial "breadcrumbs.html" . }}
-
-                {{ .Content }}
-
+                <div class="container">
+                    {{ partial "breadcrumbs.html" . }}
+                    <br/>
+                    {{ .Content }}
+                </div>
             </main>
 
         </div>
