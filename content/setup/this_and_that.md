@@ -16,6 +16,6 @@ draft: false
 
 ## Sub1 Title 2
 
-# Title 2
+
 
 ### Sub2 Title 3

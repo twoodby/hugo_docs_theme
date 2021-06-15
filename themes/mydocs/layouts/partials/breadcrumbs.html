@@ -1,36 +1,33 @@
-
-
 {{ $value := (printf "<span class='navbar-text'>%s</span>" .Title) }}
-{{ template "breadcrumb" dict "page" . "value" $value }}
-
-
+{{ template "breadcrumb" dict "page" . "value" $value "origPage" .}}
 
 {{define "breadcrumb"}}
-{{$parent := .page.Parent }}
-{{ if $parent }}
-  {{ $value := (printf "<li class='nav-item'><a class='nav-link' href='%s'>%s<i class='fas fa-angle-right ps-3'></i></a></li>%s" $parent.RelPermalink $parent.Title .value) }}
-  {{ template "breadcrumb" dict "page" $parent "value" $value }}
-{{else}}
-
-
-<div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
+  {{$parent := .page.Parent }}
+  
+  {{ if $parent }}
+    {{ $value := (printf "<li class='nav-item'><a class='nav-link' href='%s'>%s<i class='fas fa-angle-right ps-3'></i></a></li>%s" $parent.RelPermalink $parent.Title .value) }}
+    {{ template "breadcrumb" dict "page" $parent "value" $value "origPage" .origPage }}
+  {{else}}
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              {{ .value|safeHTML }}
-            </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
 
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {{ .value|safeHTML }}
+          </ul>
 
-    </nav>
-  </div>
-
-{{end}}
+          {{ if ge (len .origPage.TableOfContents) 100 }}
+          <form class="d-flex">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="pageToc" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="far fa-list-alt"></i>
+            </button>
+            {{ .origPage.TableOfContents }}
+        </form>
+        {{ end }}
+        </div>
+      </nav>
+    </div>
+  {{end}}
 {{end}}
 
 

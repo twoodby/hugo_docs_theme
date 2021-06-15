@@ -146,3 +146,25 @@ window.addEventListener("DOMContentLoaded", function (event) {
         return result;
     }
 }, false);
+
+window.addEventListener("DOMContentLoaded", function(event){
+    var toc = document.getElementById('TableOfContents');    
+    var parent = toc.parentNode;
+    while (toc.firstChild) parent.insertBefore(toc.firstChild, toc);
+    parent.removeChild(toc);
+
+    toc = parent.getElementsByTagName('ul')[0]
+    toc.classList.add("dropdown-menu");
+    toc.classList.add("dropdown-menu-end");
+    toc.classList.add("mydocs-toc");
+    toc.setAttribute('aria-labelledby', 'test')
+
+    toc.querySelectorAll('a').forEach(function(el) {
+        el.classList.add("dropdown-item")
+    })
+
+    console.log("-----------------------------------------------------")
+    console.log(toc)
+    console.log("-----------------------------------------------------")
+}, false)
+    

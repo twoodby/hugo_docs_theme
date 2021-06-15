@@ -1,0 +1,10 @@
+.mydocs-toc ul {
+    list-style-type: none;
+}
+
+.mydocs-toc li ul {
+    padding-left: 1rem;
+
+
+}
+
