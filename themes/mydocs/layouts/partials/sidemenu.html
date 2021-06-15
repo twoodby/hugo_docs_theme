@@ -1,3 +1,4 @@
+{{ $currentNode := . }}
 <div class="h-100 overflow-auto bg-dark text-white pl-0 pt-3" id="sidebar" role="navigation" style="width: 250px;">
 
     <a class="navbar-brand text-white" href="/">
@@ -17,60 +18,26 @@
     {{ end }}
     
     <!-- Main Menu -->
-    <div>
-
-    {{ $curUniqueID := .File.UniqueID }}    
-    {{range .Site.Home.Sections.ByWeight}}
-
-        <a 
-            href="{{ .Permalink }}" 
-            class="text-decoration-none active {{ if eq .File.UniqueID $curUniqueID }}link-info{{ else }}link-light{{ end }}">
-            {{ safeHTML .Params.Pre }} {{ .Title }}
-
-        </a>
-        <br/>
-    {{end}}
+    <div>    
+    {{ template "menu-page-link" dict "pages" .Site.Home.Sections "curNode" $currentNode "padding" 0 }}
     </div>
-
-
-
-
     <hr/>
 
+    <!-- Custom Menu -->
+
+    
+
+
+
+    
 
 
 
 
 
-    <div class="ps-3">
-        <a href="#" class="link-light text-decoration-none"><i class="far fa-angry"></i> Primary link</a>
-    </div>
+
         
 
-
-
-
-
-<hr/>
-
-    <ul class="nav flex-column sticky-top pl-0">
-        <li class="nav-item"><a class="nav-link" href="#">Overview</a></li>
-        <li class="nav-item">
-            <a class="nav-link">Reports▾</a>
-            <ul class="list-unstyled flex-column ps-3" >
-               <li class="nav-item"><a class="nav-link" href="">Report 1</a></li>
-               <li class="nav-item"><a class="nav-link" href="">Report 2</a></li>
-            </ul>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="#">Analytics</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Export</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Snippets</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Flexbox</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Layouts</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Templates</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Themes</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Last Item</a></li>
-    </ul>
 </div>
 
 
@@ -99,3 +66,26 @@
         <p class="mb-1 sr-note">Some placeholder content in a paragraph.</p>
     </a>
 </template>
+
+
+{{ define "menu-page-link" }}
+    {{ $curNode := .curNode }}
+
+    <div class="ps-{{ .padding }}">
+        {{ range .pages.ByWeight }}
+            {{ $curLine := false }}
+            {{ if ( or (eq .File.UniqueID $curNode.File.UniqueID) ( .IsAncestor $curNode )) }}
+                {{ $curLine = true }}
+            {{ end }}
+
+
+            <a href="{{ .Permalink }}" class="text-decoration-none active {{ if $curLine }}link-info{{ else }}link-light{{ end }}">{{ safeHTML .Params.Pre }} {{ .Title }}</a><br/>
+            {{ if $curLine }}
+                {{/* $numberOfPages := (add (len .Pages) (len .Sections)) */}}
+                {{ if gt (len .Pages) 0  }}
+                    {{ template "menu-page-link" dict "pages" .Pages "curNode" $curNode "padding" 4 }} 
+                {{ end }}
+            {{ end }}    
+        {{ end }}
+    </div>
+{{ end }}

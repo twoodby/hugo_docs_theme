@@ -2,7 +2,7 @@ baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "MyDocs"
 theme = "mydocs"
-
+enableGitInfo = true
 
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
