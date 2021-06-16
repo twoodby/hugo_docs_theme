@@ -7,5 +7,5 @@ tags:
 categories:
 weight: 2
 issection: true
-pre: '<i class="far fa-circle fa-fw"></i>'
+pre: '<i class="fas fa-file-alt fa-fw"></i>'
 ---

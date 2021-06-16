@@ -12,7 +12,7 @@ outputs:
 
 menu: 
   main:
-    - name: Git Repos
+    - name: Git Repo
       pre:  <i class='fab fa-github fa-fw'></i>
       url: https://github.com/twoodby/hugo_docs_theme
       weight: 10

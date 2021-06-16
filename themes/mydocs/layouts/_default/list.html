@@ -3,35 +3,21 @@
     <div class="container-fluid" id="main">
         <div class="row vh-100">
             {{ partial "sidemenu.html" . }}
-            <!--/col-->
             <main class="col main h-100 overflow-auto">
-
-                List
                 <div class="container">
                     {{ partial "breadcrumbs.html" . }}
                     
-                
                     {{ if and (isset .Params "issection") (.Params.issection) }}
                         <div class="pt-5 text-center">
                             {{ if isset .Params "weight" }}
                                 <h1 class="display-6 text-muted">Chapter {{ .Params.weight }}</h1>
-                            {{ end }}
-
-
-                            
+                            {{ end }}        
                             <h1 class="display-2">{{ .Title }}</h1>
                             <hr/>
                             <blockquote class="blockquote">
                                 {{ .Content }}        
                             </blockquote>
-
                         </div>
-
-                        
-
-
-
-                        
                     {{ else }}
                         {{ partial "pagetitle.html" . }}
                         {{ .Content }}
@@ -42,11 +28,8 @@
                         {{ end }}
                     {{ end }}
 
-
-
                 </div>
             </main>
-
         </div>
     </div>
     {{ partial "footer.html" . }}

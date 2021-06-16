@@ -7,5 +7,5 @@ tags:
 categories:
 weight: 3
 issection: true
-pre: '<i class="far fa-circle fa-fw"></i>'
+pre: '<i class="fas fa-code fa-fw"></i>'
 ---
