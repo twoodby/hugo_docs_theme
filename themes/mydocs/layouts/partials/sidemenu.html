@@ -24,6 +24,15 @@
     <hr/>
 
     <!-- Custom Menu -->
+    {{with .Site.Menus.main}}
+        <small>
+            <ul class="list-unstyled">
+            {{ range sort . "Weight"}}
+                {{ template "menu-more-link" . }}
+            {{end}} 
+            </ul>
+        </small>
+    {{ end }}
 
 </div>
 
@@ -82,4 +91,13 @@
             
         {{ end }}
     </div>
+{{ end }}
+
+
+{{ define "menu-more-link" }}
+    <li><a href="{{ .URL }}" target="_new_tab" class="text-decoration-none link-light">
+        {{ with .Pre }}{{ . }} {{ end }}
+        {{ .Name }}
+        {{ with .Post }}{{ . }}{{ end }}
+    </a></li>
 {{ end }}
