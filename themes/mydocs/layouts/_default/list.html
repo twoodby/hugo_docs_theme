@@ -6,12 +6,45 @@
             <!--/col-->
             <main class="col main h-100 overflow-auto">
 
-                LIST
+                List
+                <div class="container">
+                    {{ partial "breadcrumbs.html" . }}
+                    
+                
+                    {{ if and (isset .Params "issection") (.Params.issection) }}
+                        <div class="pt-5 text-center">
+                            {{ if isset .Params "weight" }}
+                                <h1 class="display-6 text-muted">Chapter {{ .Params.weight }}</h1>
+                            {{ end }}
 
-                {{ partial "breadcrumbs.html" . }}
 
-                {{ .Content }}
+                            
+                            <h1 class="display-2">{{ .Title }}</h1>
+                            <hr/>
+                            <blockquote class="blockquote">
+                                {{ .Content }}        
+                            </blockquote>
 
+                        </div>
+
+                        
+
+
+
+                        
+                    {{ else }}
+                        {{ partial "pagetitle.html" . }}
+                        {{ .Content }}
+                        {{ range .Pages }}
+                            <li>
+                                <a href="{{.Permalink}}">{{.Date.Format "2006-01-02"}} | {{.Title}}</a>
+                            </li>
+                        {{ end }}
+                    {{ end }}
+
+
+
+                </div>
             </main>
 
         </div>

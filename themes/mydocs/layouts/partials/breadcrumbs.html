@@ -18,12 +18,14 @@
                 </nav>
             </div>
             <div class="col">
+                {{ if ge (len .origPage.TableOfContents) 100 }}
                 <span class="float-end">
                     <button type="button" class="btn btn-outline-secondary btn-sm" id="pageToc" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="far fa-list-alt"></i>
                     </button>
                     {{ .origPage.TableOfContents }}
                 </span>
+                {{ end }}
             </div>
         </div>
   {{end}}

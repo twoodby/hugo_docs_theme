@@ -1,11 +1,11 @@
 ---
-title: "Standards"
+title: "Shortcodes"
 description:
-date: 2021-06-14T15:30:41-04:00
+date: 2021-06-16T14:42:16-04:00
 draft: false
 tags:
 categories:
-weight: 0
+weight: 3
 issection: true
 pre: '<i class="far fa-circle fa-fw"></i>'
 ---
