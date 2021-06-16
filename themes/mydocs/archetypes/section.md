@@ -4,8 +4,7 @@ description:
 date: {{ .Date }}
 draft: false
 tags:
-categories:
-weight: 0
+weight: 99
 issection: true
 pre: '<i class="far fa-circle fa-fw"></i>'
 ---
