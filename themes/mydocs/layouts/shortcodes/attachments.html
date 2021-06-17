@@ -1,8 +1,11 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
 
-<div class="card mt-2 mb-5">
+{{ $iconCode := "<i class='fas fa-paperclip'></i>"}}
+{{ with .Get "icon" }}{{ $iconCode = . }}{{ end }}
+
+<div class="card mt-2 mb-3">
     <div class="card-header">
-        <i class="fas fa-paperclip"></i> {{with .Get "title"}}{{.}}{{else}}{{ "Related Files" }}{{end}}
+         {{ $iconCode | safeHTML }} {{with .Get "title"}}{{.}}{{else}}{{ "Related Files" }}{{end}}
     </div>
 
     {{if eq .Page.File.BaseFileName "index"}}
