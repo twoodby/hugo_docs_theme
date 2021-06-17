@@ -8,6 +8,7 @@ tags:
     - system
     - applications
 categories:
+    - test
 ---
 
 Currently the only requirement is _Hugo_ please follow the instructions [here](https://gohugo.io/getting-started/installing/) on how to install/update

@@ -3,24 +3,35 @@
     <span class="float-end text-end">
         <small class="text-muted ">{{ dateFormat "Monday, Jan 2, 2006" .PublishDate }}</small><br/>
         
-        {{ $pillList := "" }}
-
-        {{ range $index, $name :=  .Params.categories }}
-            {{ $pillList = printf  "%s<a href='/categories/%s' class='pe-1'><span class='badge rounded-pill bg-primary'>%s</span></a>" $pillList ($name | urlize) ($name | markdownify) }}
-        {{ end }}
-
+        {{ $pillListTags := "" }}
         {{ range $index, $name :=  .Params.tags }}
-            {{ $pillList = printf  "%s<a href='/tags/%s' class='pe-1'><span class='badge rounded-pill bg-info text-dark'>%s</span></a>" $pillList ($name | urlize) ($name | markdownify) }}
+            {{ $pillListTags = printf "%s<li><a class='dropdown-item' href='%s'>%s</a></li>" $pillListTags ($name | urlize) ($name | markdownify) }}
         {{ end }}
 
-        {{ if ne $pillList "" }}
+        {{ $pillListCategories := "" }}
+        {{ range $index, $name :=  .Params.categories }}
+            {{ $pillListCategories = printf "%s<li><a class='dropdown-item' href='%s'>%s</a></li>" $pillListCategories ($name | urlize) ($name | markdownify) }}
+        {{ end }}
+
+
+
+        {{ if or (ne $pillListCategories "") (ne $pillListTags "")  }}
         <div class="dropdown">
-            <a class="link-info" href="#"  id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="link-info" href="#"  id="ddTags" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fas fa-tags"></i> 
             </a>
-            <span class="dropdown-menu dropdown-menu-end p-1" aria-labelledby="dropdownMenuLink">
-                {{ $pillList | safeHTML }}
-            </span>
+            <ul class="dropdown-menu" aria-labelledby="ddTags">
+                {{ if ne $pillListCategories "" }}
+                    <li><h6 class="dropdown-header">Categories</h6></li>
+                    {{ $pillListCategories | safeHTML }}
+                {{ end }}
+
+
+                {{ if ne $pillListTags "" }}
+                    <li><h6 class="dropdown-header">Tags</h6></li>
+                    {{ $pillListTags | safeHTML }}
+                {{ end }}
+            </ul>
         </div>
         {{ end }}
     </span>
