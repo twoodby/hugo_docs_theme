@@ -1,0 +1,33 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+
+<div class="card mt-2 mb-5">
+    <div class="card-header">
+        <i class="fas fa-paperclip"></i> {{with .Get "title"}}{{.}}{{else}}{{ "Related Files" }}{{end}}
+    </div>
+
+    {{if eq .Page.File.BaseFileName "index"}}
+		{{$.Scratch.Add "filesName" "files"}}
+	{{else}}
+		{{$.Scratch.Add "filesName" (printf "%s.files" .Page.File.BaseFileName)}}
+	{{end}}
+
+    
+    <ul class="list-group list-group-flush">
+        {{ range (readDir (printf "./content/%s%s" .Page.File.Dir ($.Scratch.Get "filesName")) ) }}
+        {{ $fileDir := replace $.Page.File.Dir "\\" "/" }}
+		    {{if ($.Get "pattern")}}
+			    {{if (findRE ($.Get "pattern") .Name)}}
+                    <li class="list-group-item">
+                        <a href='{{ (printf "%s%s/%s" $fileDir ($.Scratch.Get "filesName") .Name) | relURL }}'>{{.Name}}</a>
+                        <span class="float-end text-muted">{{div .Size 1024 }} kb</span>
+                    </li>
+			    {{end}}
+		    {{else}}
+                <li class="list-group-item">
+                    <a href='{{ (printf "%s%s/%s" $fileDir ($.Scratch.Get "filesName") .Name) | relURL }}'>{{.Name}}</a>
+                    <span class="float-end text-muted">{{div .Size 1024 }} kb</span>
+                </li>
+		    {{end}}
+        {{ end }}
+    </ul>
+</div>

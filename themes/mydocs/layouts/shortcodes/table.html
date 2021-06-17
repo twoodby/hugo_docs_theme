@@ -1,0 +1,16 @@
+{{ $htmlTable := .Inner | markdownify }}
+{{ $tClass := .Get "tableClass" }}
+{{ $hClass := .Get "headerClass" }}
+
+{{ $old := "<table>" }}
+{{ $new := printf "<table class='table %s'>" $tClass }}
+{{ $htmlTable := replace $htmlTable $old $new }}
+
+
+{{ $old := "<thead>" }}
+{{ $new := printf "<thead class='%s'>" $hClass }}
+{{ $htmlTable := replace $htmlTable $old $new }}
+    
+
+
+{{ $htmlTable | safeHTML }}

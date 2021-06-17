@@ -17,7 +17,10 @@ menu:
       url: https://github.com/twoodby/hugo_docs_theme
       weight: 10
 
-
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
 
 params:
   # Javascript and CSS cache are automatically busted when new version of site is generated.

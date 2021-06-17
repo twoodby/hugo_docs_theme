@@ -6,6 +6,7 @@
     {{ $assetBusting := not .Site.Params.disableAssetsBusting }}
     <link href="{{ "css/bootstrap-5.0.1-min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{ "css/fontawesome-free-all-5.15.3.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
+    <link href="{{ "css/highlight-11.0.1.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{ "css/mydocs.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
 
     <link rel="icon" type="image/png" href="/faveico-16x16.png" sizes="16x16">
