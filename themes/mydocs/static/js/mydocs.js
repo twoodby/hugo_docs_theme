@@ -1,4 +1,113 @@
 window.addEventListener("DOMContentLoaded", function (event) {
+    setupSearch()
+    loadClipboard()
+}, false);
+
+window.addEventListener("DOMContentLoaded", function(event){
+    var toc = document.getElementById('TableOfContents');    
+    var parent = toc.parentNode;
+    while (toc.firstChild) parent.insertBefore(toc.firstChild, toc);
+    parent.removeChild(toc);
+
+    toc = parent.getElementsByTagName('ul')[0]
+    toc.classList.add("dropdown-menu");
+    toc.classList.add("dropdown-menu-end");
+    toc.classList.add("mydocs-toc");
+    toc.setAttribute('aria-labelledby', 'test')
+
+    toc.querySelectorAll('a').forEach(function(el) {
+        el.classList.add("dropdown-item")
+    })
+
+    console.log("-----------------------------------------------------")
+    console.log(toc)
+    console.log("-----------------------------------------------------")
+}, false)
+    
+
+// Setup Clipboard
+function loadClipboard() {
+    var clipInit = false;
+    $('pre code').each(function() {
+        var code = $(this),
+            text = code.text();
+
+        if (text.length > 5) {
+            if (!clipInit) {
+                var text, clip = new ClipboardJS('.copy-to-clipboard', {
+                    text: function(trigger) {
+                        text = $(trigger).prev('code').text();
+                        return text.replace(/^\$\s/gm, '');
+                    }
+                });
+
+                var inPre;
+                clip.on('success', function(e) {
+                    e.clearSelection();
+                    inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
+                    $(e.trigger).attr('aria-label', 'Copied to clipboard!').addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
+                });
+
+                clip.on('error', function(e) {
+                    inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
+                    $(e.trigger).attr('aria-label', fallbackMessage(e.action)).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
+                    $(document).one('copy', function(){
+                        $(e.trigger).attr('aria-label', 'Copied to clipboard!').addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
+                    });
+                });
+
+                clipInit = true;
+            }
+
+            code.before('<span class="copy-to-clipboard btn btn-outline-secondary float-end" title="Copy to clipboard" ><i class="fas fa-clipboard"></i></span>');
+            // code.next('.copy-to-clipboard').on('mouseleave', function() {
+            //     $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
+            // });
+        }
+    });
+}
+
+
+    // $('code').each(function() {
+    //     var code = $(this),
+    //         text = code.text();
+
+    //     if (text.length > 5) {
+    //         if (!clipInit) {
+    //             var text, clip = new ClipboardJS('.copy-to-clipboard', {
+    //                 text: function(trigger) {
+    //                     text = $(trigger).prev('code').text();
+    //                     return text.replace(/^\$\s/gm, '');
+    //                 }
+    //             });
+
+    //             var inPre;
+    //             clip.on('success', function(e) {
+    //                 e.clearSelection();
+    //                 inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
+    //                 $(e.trigger).attr('aria-label', 'Copied to clipboard!').addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
+    //             });
+
+    //             clip.on('error', function(e) {
+    //                 inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
+    //                 $(e.trigger).attr('aria-label', fallbackMessage(e.action)).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
+    //                 $(document).one('copy', function(){
+    //                     $(e.trigger).attr('aria-label', 'Copied to clipboard!').addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
+    //                 });
+    //             });
+
+    //             clipInit = true;
+    //         }
+
+    //         code.after('<span class="copy-to-clipboard" title="Copy to clipboard" />');
+    //         code.next('.copy-to-clipboard').on('mouseleave', function() {
+    //             $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
+    //         });
+    //     }
+    // });
+
+
+function setupSearch() {
     console.log("Start This")
     var index = null;
     var lookup = null;
@@ -145,26 +254,4 @@ window.addEventListener("DOMContentLoaded", function (event) {
         }
         return result;
     }
-}, false);
-
-window.addEventListener("DOMContentLoaded", function(event){
-    var toc = document.getElementById('TableOfContents');    
-    var parent = toc.parentNode;
-    while (toc.firstChild) parent.insertBefore(toc.firstChild, toc);
-    parent.removeChild(toc);
-
-    toc = parent.getElementsByTagName('ul')[0]
-    toc.classList.add("dropdown-menu");
-    toc.classList.add("dropdown-menu-end");
-    toc.classList.add("mydocs-toc");
-    toc.setAttribute('aria-labelledby', 'test')
-
-    toc.querySelectorAll('a').forEach(function(el) {
-        el.classList.add("dropdown-item")
-    })
-
-    console.log("-----------------------------------------------------")
-    console.log(toc)
-    console.log("-----------------------------------------------------")
-}, false)
-    
+}

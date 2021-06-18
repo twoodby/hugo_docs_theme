@@ -1,8 +1,11 @@
 {{ $assetBusting := not .Site.Params.disableAssetsBusting }}
+
+<script src="{{ "js/jquery-3.6.0.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
 <script src="{{ "js/bootstrap.bundle-5.0.1-min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
 <script src="{{ "js/lunr-2.3.9.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
 <script src="{{ "js/mermaid-8.10.2.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
 <script src="{{ "js/highlight-11.0.1.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
+<script src="{{ "js/clipboard-2.0.8.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
 <script src="{{ "js/mydocs.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
 
 <script>hljs.highlightAll();</script>
