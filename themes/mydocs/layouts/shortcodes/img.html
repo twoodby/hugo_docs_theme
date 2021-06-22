@@ -1,0 +1,6 @@
+{{ $path := .Get "path" }}
+{{ $class := default "img-fluid" (.Get "class") }}
+{{ $width := default "" (.Get "width") }}
+{{ $height := default "" (.Get "height") }}
+
+<img src="{{ $path }}" class="{{ $class }}" width="{{ $width }}" height="{{ $height }}">
