@@ -5,6 +5,8 @@ date: 2021-06-16T16:36:43-04:00
 weight: 7
 draft: false
 tags:
+    - shortcode
+    - tabs
 ---
 
 A shortcode that will allow you to tab out options such as code in multiple languages.
