@@ -11,9 +11,7 @@ tags:
 
 This is a shortode that will alow you to override the default table theme based on classes in the [bootstrap](https://getbootstrap.com/docs/5.0/content/tables/) theme
 
-## Default
-
-### Preview
+## Example
 
 {{% table tableClass="" headerClass="" %}}
 | Col1 Name | Col2 Name|  Col3 Name | Col4 Name |
@@ -35,48 +33,13 @@ This is a shortode that will alow you to override the default table theme based 
     {{%/* /table */%}}
 ```
 
-## Variants
+## Options
 
-### Preview
-
-{{% table tableClass="table-primary" headerClass="" %}}
-| Col1 Name | Col2 Name|  Col3 Name | Col4 Name |
+{{% table tableClass="" headerClass="table-secondary" %}}
+| Option | Type |  Default Value | Description |
 |---|---|---|---|
-{{% /table %}}
-{{% table tableClass="table-secondary" headerClass="" %}}
-| Col1 Name | Col2 Name|  Col3 Name | Col4 Name |
-|---|---|---|---|
-| Value 1A | Value 2A | Value 3A | Value 4A |
-{{% /table %}}
-{{% table tableClass="table-success" headerClass="" %}}
-| Col1 Name | Col2 Name|  Col3 Name | Col4 Name |
-|---|---|---|---|
-| Value 1A | Value 2A | Value 3A | Value 4A |
-{{% /table %}}
-{{% table tableClass="table-danger" headerClass="" %}}
-| Col1 Name | Col2 Name|  Col3 Name | Col4 Name |
-|---|---|---|---|
-| Value 1A | Value 2A | Value 3A | Value 4A |
-{{% /table %}}
-{{% table tableClass="table-warning" headerClass="" %}}
-| Col1 Name | Col2 Name|  Col3 Name | Col4 Name |
-|---|---|---|---|
-| Value 1A | Value 2A | Value 3A | Value 4A |
-{{% /table %}}
-{{% table tableClass="table-info" headerClass="" %}}
-| Col1 Name | Col2 Name|  Col3 Name | Col4 Name |
-|---|---|---|---|
-| Value 1A | Value 2A | Value 3A | Value 4A |
-{{% /table %}}
-{{% table tableClass="table-light" headerClass="" %}}
-| Col1 Name | Col2 Name|  Col3 Name | Col4 Name |
-|---|---|---|---|
-| Value 1A | Value 2A | Value 3A | Value 4A |
-{{% /table %}}
-{{% table tableClass="table-dark" headerClass="" %}}
-| Col1 Name | Col2 Name|  Col3 Name | Col4 Name |
-|---|---|---|---|
-| Value 1A | Value 2A | Value 3A | Value 4A |
+| tableClass  | String | null | A list of css classes to add to "table" and added to the table |
+| headerClass | String | null | A List of css classes to add to the header   |
 {{% /table %}}
 
-### Code
+To get a list of available classes please check the docs here https://getbootstrap.com/docs/5.0/content/tables/
