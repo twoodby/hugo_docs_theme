@@ -1,6 +1,29 @@
-{{ $path := .Get "path" }}
+{{ $path := default "https://plchldr.co/i/200x200?&bg=000000&fc=ffffff" (.Get "path") }}
 {{ $class := default "img-fluid" (.Get "class") }}
 {{ $width := default "" (.Get "width") }}
 {{ $height := default "" (.Get "height") }}
+{{ $thumbnail := default false (.Get "thumb") }}
+{{ $title := default "" (.Get "title") }}
 
-<img src="{{ $path }}" class="{{ $class }}" width="{{ $width }}" height="{{ $height }}">
+
+{{ if eq $thumbnail false }}
+    <img src="{{ $path }}" alt="{{ $title }}" class="{{ $class }} m-2" width="{{ $width }}" height="{{ $height }}">
+{{ else  }}
+    <img src="{{ $path }}" class="{{ $class }} img-thumbnail m-2" width="{{ $width }}" height="{{ $height }}" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ $title }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+                    <img src="{{ $path }}" class="img-fluid">
+                </div>
+
+            </div>
+        </div>
+    </div>
+{{ end }}
