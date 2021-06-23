@@ -9,3 +9,5 @@ weight: 3
 issection: true
 pre: '<i class="fas fa-code fa-fw"></i>'
 ---
+
+> Shortcodes are used by hugo to make it easier to add custom HTML code. Such things a charts, alerts, and custom image layouts.

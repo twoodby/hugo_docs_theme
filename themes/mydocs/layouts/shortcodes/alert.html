@@ -23,7 +23,7 @@
 
 
 {{ if ne $large true }}
-<div class="alert {{ $alertStyle }} d-flex align-items-center" role="alert">
+<div class="alert {{ $alertStyle }} align-items-center" role="alert">
     <i class="me-2 fa-fw fa-lg {{$alertIcon}}"></i>
     <strong class="me-2">{{ $title }}</strong>
     {{ .Inner }}
@@ -34,7 +34,7 @@
         <i class="me-2 fa-fw fa-lg {{$alertIcon}}"></i>
         {{ $title }}
     </h4>
-    {{ .Inner }}
+    {{ .Inner | markdownify }}
 </div>
 {{ end }}
 

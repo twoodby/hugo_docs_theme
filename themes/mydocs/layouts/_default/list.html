@@ -19,13 +19,36 @@
                             </blockquote>
                         </div>
                     {{ else }}
-                        {{ partial "pagetitle.html" . }}
-                        {{ .Content }}
-                        {{ range .Pages }}
-                            <li>
-                                <a href="{{.Permalink}}">{{.Date.Format "2006-01-02"}} | {{.Title}}</a>
-                            </li>
+                        <div class="pt-5 text-center">
+                            <h1 class="display-2">{{ .Title }}</h1>
+                            <hr/>
+                            <blockquote class="blockquote">
+                                {{ .Content }}        
+                            </blockquote>
+                        </div>
+
+
+                        {{ if and (isset .Params "listtype") }}
+                            {{ if eq .Params.listtype "link-description" }}
+                                <br/>
+                                <dl class="row">
+                                    {{ range .Pages }}
+                                    <dt class="col-2">
+                                        <a href="{{ .Permalink }}">{{ .Title }}</a>
+                                    </dt>
+                                    <dd class="col-10">{{ .Description }}</dd>
+                                    {{ end }}
+                                </dl>
+
+                            {{ end }}
+                        {{ else }}
+                            {{ range .Pages }}
+                                <a href="{{ .Permalink }}">{{ .Title }}</a><br/>
+                            {{ end }}
                         {{ end }}
+
+
+
                     {{ end }}
 
                 </div>
