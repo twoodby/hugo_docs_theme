@@ -11,6 +11,7 @@ includes:
   branch: ./.tasks/tf-{{OS}}-branching.yml
   tags: ./.tasks/tf-{{OS}}-tagging.yml
   util: ./.tasks/tf-{{OS}}-util.yml
+  hugo: ./.tasks/tf-{{OS}}-hugo.yml
 
 tasks:
   setup:

@@ -1,0 +1,11 @@
+# https://taskfile.dev
+version: '3'
+
+
+tasks:
+  launch:
+    desc: Launch the current site with drafts on.
+    cmds:
+      - task: :util:confirmHugo
+      - cmd: (cd examplesite; hugo serve -D)
+    silent: true
