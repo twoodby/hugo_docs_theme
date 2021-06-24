@@ -1,3 +1,14 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+
+title = "Docs Theme Documentation"
+
+#  Theme Settings
+theme = "hugo_docs_theme"
+themesdir = "../.."
+
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+
+[params]
+    disableBreadcrumb = false
