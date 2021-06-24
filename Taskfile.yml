@@ -1,0 +1,31 @@
+# https://taskfile.dev
+version: '3'
+
+vars:
+  BRANCH_PREFIX_RELEASE: release/
+  BRANCH_PREFIX_PROJECT: project/
+  BRANCH_PREFIX_ISSUE: issue/
+  BRANCH_PRODUCTION: distributed
+
+includes:
+  branch: ./.tasks/tf-{{OS}}-branching.yml
+  tags: ./.tasks/tf-{{OS}}-tagging.yml
+  util: ./.tasks/tf-{{OS}}-util.yml
+
+tasks:
+  setup:
+    desc: verify and setup the project for development
+    cmds:
+      - task: util:confirmCurl
+      - cmd: echo "Setup Commit Hook"
+      - task: util:dlFile
+        vars: {IN: "https://raw.githubusercontent.com/krakentech/kt_project_tools/1.0.0/githooks/prepare-commit-msg", OUT: "./.git/hooks/prepare-commit-msg", ERR: "Unable to download the commit hook file"}
+      - cmd: chmod +x "./.git/hooks/prepare-commit-msg"
+      - cmd: echo "Commit Hook Installed"
+      - cmd: echo "Setup Complete"
+    silent: true
+
+  default:
+    cmds:
+      - task -l
+    silent: true

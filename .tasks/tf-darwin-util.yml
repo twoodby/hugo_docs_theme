@@ -1,0 +1,58 @@
+# https://taskfile.dev
+version: '3'
+
+
+tasks:
+  checkPrefix: # Checks that the branch you are on is proper to create the next branch
+    vars:
+      CUR_PREFIX: 
+        sh: echo "$(git symbolic-ref --short -q HEAD | cut -d/ -f1)/"
+    cmds:
+      - |
+        string="{{.ALLOWED}}"
+        substring="{{.CUR_PREFIX}}"
+        if test "${string#*$substring}" == "$string"; then
+          printf "\nError (Improper base branch)\n\n"
+          printf "You can only create a '{{.BR_TYPE}}' branch from one of the following\n"
+          tmp="{{.ALLOWED}}"
+          printf '%s\n' "${tmp//|/$'\n'}"
+          exit 1; 
+        fi
+    silent: true
+
+  repoNotDirty: # Checks that the current repo is not dirty
+    vars:
+      MSG_DIRTY: Your current branch is dirty and so we can not continue.
+    cmds:
+      - cmd:  if [[ ! -z $(git status --porcelain) ]]; then echo -e "\n{{.MSG_DIRTY}}\n"; exit 1; fi
+    silent: true
+
+  remoteDiff: # Checks if the current state of the branch is the same as remote
+    vars:
+      MSG_REMOTE_DIFF: Local and Remote are different please fix and try again
+    cmds:
+      - cmd: git remote update && if [ $(git rev-parse HEAD) != $(git rev-parse @{u}) ]; then echo -e "\n{{.MSG_REMOTE_DIFF}}\n"; exit 1; fi
+    silent: true
+
+  confirmGit: # Check that git is available from the cl
+    vars:
+      MSG_NO_GIT: \nGIT is required for development on this app. \nPlease check the readme on what to do. \nAborting.\n
+    cmds:
+      - cmd: command -v git >/dev/null 2>&1 || { echo -e >&2 "{{ .MSG_NO_GIT }}"; exit 1; }
+    silent: true
+
+  dlFile: # Download file from path to path
+    vars:
+      IN: '{{default "" .IN}}'
+      OUT: '{{default "" .OUT}}'
+      ERR: '{{default "Failed to dl file" .ERR}}'
+    cmds:
+      - cmd: if curl -so "{{.OUT}}" "{{.IN}}"; then echo "Download Complete ({{.OUT}})"; else echo -e "{{.ERR}}"; exit 1; fi
+    silent: true
+
+  confirmCurl: # Check that curl is available from the cl
+    vars:
+      MSG_NO_CURL: \nCurl is required for development on this app. \nPlease check the readme on what to do. \nAborting.\n
+    cmds:
+      - cmd: command -v curl >/dev/null 2>&1 || { echo -e >&2 "{{ .MSG_NO_GIT }}"; exit 1; }
+    silent: true
